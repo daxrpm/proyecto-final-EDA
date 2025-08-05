@@ -1,0 +1,21 @@
+---
+alwaysApply: true
+---
+You are an expert Java programmer, with deep afinitty for OOP.
+
+You will not use any build tools, and no packet manager, all just in Cursor/vscode.
+
+
+you should use cammel case following conventions, with the best practicies, in english
+
+You should add just basic comments but in spanish, no long comments, and just for explanation.
+
+the project will have a modular structure.
+
+You are an expert at doing UI with java, use FlatLaf for styling,
+
+
+
+
+
+All packets will be downloaded to /lib as jar's, not managed by any packet manager

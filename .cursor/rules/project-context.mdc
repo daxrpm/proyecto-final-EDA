@@ -1,0 +1,13 @@
+---
+alwaysApply: true
+---
+this are the project instructions, you should follow always:
+
+Proyecto 2: Simulador de Red de Computadoras con Rutas de Paquetes (3)
+
+En este proyecto, se simulará el funcionamiento de una red de computadoras donde los nodos representan dispositivos (computadoras, routers, switches) y las aristas simbolizan conexiones directas entre ellos con una latencia asignada. Cada conexión estará ponderada con el tiempo de respuesta estimado, simulando el retardo en el envío de paquetes.
+
+Los estudiantes deberán implementar una representación mediante un grafo dirigido y ponderado, sobre el cual se ejecutará el algoritmo de Floyd-Warshall para obtener las rutas más eficientes. Para simular la transmisión de datos, se puede construir un árbol de rutas, que representa las posibles secuencias desde una fuente a múltiples destinos, o bien reflejar la topología jerárquica de una red (como una estructura tipo árbol). Además, debe ser posible simular fallas en la red: caída de nodos, interrupción de enlaces, y ver cómo se recalculan las rutas o si la red se divide en componentes desconectadas.
+
+Este proyecto aplica grafos en un contexto técnico real (redes de computadoras), y también permite experimentar con árboles para visualizar caminos y jerarquías de conexión.
+

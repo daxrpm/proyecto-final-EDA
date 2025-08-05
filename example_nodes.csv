@@ -1,0 +1,7 @@
+id,name,type,x,y,status
+1,Router_Central,ROUTER,100,100,ACTIVE
+2,PC_Oficina1,PC,200,150,ACTIVE
+3,Switch_Piso1,SWITCH,150,200,ACTIVE
+4,PC_Oficina2,PC,250,200,ACTIVE
+5,Router_Secundario,ROUTER,300,100,ACTIVE
+6,PC_Oficina3,PC,350,150,ACTIVE 
