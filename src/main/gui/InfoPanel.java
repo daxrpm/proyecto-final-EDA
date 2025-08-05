@@ -66,6 +66,7 @@ public class InfoPanel extends JPanel {
         tabbedPane.addTab("Estadísticas", infoScrollPane);
         tabbedPane.addTab("Rutas", routesScrollPane);
         tabbedPane.addTab("Fallas", createFailuresPanel());
+        tabbedPane.addTab("Árbol de Rutas", createRouteTreePanel());
         
         // Layout principal
         add(topPanel, BorderLayout.NORTH);
@@ -83,6 +84,7 @@ public class InfoPanel extends JPanel {
         updateStatistics();
         updateRoutes();
         updateFailures();
+        updateRouteTreeInfo();
     }
     
     private void updateStatistics() {
@@ -278,4 +280,55 @@ public class InfoPanel extends JPanel {
     
     // Campo para el área de fallas
     private JTextArea failuresArea;
+    
+    // Campo para el área del árbol de rutas
+    private JTextArea routeTreeArea;
+    
+    private JPanel createRouteTreePanel() {
+        JPanel routeTreePanel = new JPanel(new BorderLayout());
+        JTextArea routeTreeArea = new JTextArea();
+        routeTreeArea.setEditable(false);
+        routeTreeArea.setFont(new Font("Monospaced", Font.PLAIN, 12));
+        
+        JScrollPane routeTreeScrollPane = new JScrollPane(routeTreeArea);
+        routeTreePanel.add(routeTreeScrollPane, BorderLayout.CENTER);
+        
+        // Guardar referencia para actualizaciones
+        this.routeTreeArea = routeTreeArea;
+        
+        return routeTreePanel;
+    }
+    
+    private void updateRouteTreeInfo() {
+        if (routeTreeArea == null) return;
+        
+        StringBuilder info = new StringBuilder();
+        
+        info.append("=== ÁRBOL DE RUTAS ===\n\n");
+        info.append("Esta funcionalidad permite encontrar TODAS las rutas posibles\n");
+        info.append("desde un nodo origen hasta un nodo destino.\n\n");
+        
+        info.append("Características:\n");
+        info.append("- Usa algoritmo DFS para encontrar todas las rutas\n");
+        info.append("- Construye un árbol jerárquico de rutas\n");
+        info.append("- Muestra latencia de cada conexión\n");
+        info.append("- Calcula latencia total de cada ruta\n");
+        info.append("- Evita ciclos infinitos\n\n");
+        
+        info.append("Para usar esta funcionalidad:\n");
+        info.append("1. Haga clic en 'Árbol de Rutas' en el panel de control\n");
+        info.append("2. Seleccione nodo origen y destino\n");
+        info.append("3. Haga clic en 'Encontrar Todas las Rutas'\n");
+        info.append("4. Vea el árbol en formato texto o visual\n\n");
+        
+        info.append("Ejemplo de salida:\n");
+        info.append("PC1\n");
+        info.append(" └── Switch1 (5ms)\n");
+        info.append("      ├── RouterA (10ms)\n");
+        info.append("      │     └── RouterB (8ms)\n");
+        info.append("      │           └── ServidorX (12ms) [Total: 35ms]\n");
+        info.append("      └── ServidorX (30ms) [Total: 35ms]\n");
+        
+        routeTreeArea.setText(info.toString());
+    }
 } 

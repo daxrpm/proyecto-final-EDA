@@ -4,6 +4,7 @@ import main.model.Network;
 import main.model.Node;
 import main.model.Connection;
 import main.utils.CSVManager;
+import main.gui.RouteTreeWindow;
 
 import javax.swing.*;
 import java.awt.*;
@@ -29,6 +30,7 @@ public class ControlPanel extends JPanel {
     private JButton showMatricesButton;
     private JButton simulateFailureButton;
     private JButton restoreConnectionButton;
+    private JButton routeTreeButton;
     private JButton packetSimulationButton;
     private JButton clearButton;
     private JButton cancelEditButton;
@@ -56,6 +58,7 @@ public class ControlPanel extends JPanel {
         showMatricesButton = new JButton("Ver Matrices");
         simulateFailureButton = new JButton("Simular Falla");
         restoreConnectionButton = new JButton("Restaurar Conexión");
+        routeTreeButton = new JButton("Árbol de Rutas");
         packetSimulationButton = new JButton("Simular Paquete");
         clearButton = new JButton("Limpiar Red");
         
@@ -114,13 +117,14 @@ public class ControlPanel extends JPanel {
         
         // Panel de algoritmos
         JPanel algorithmPanel = new JPanel();
-        algorithmPanel.setLayout(new GridLayout(5, 1));
+        algorithmPanel.setLayout(new GridLayout(6, 1));
         algorithmPanel.setBorder(BorderFactory.createTitledBorder("Algoritmos"));
         
         algorithmPanel.add(calculateRoutesButton);
         algorithmPanel.add(showMatricesButton);
         algorithmPanel.add(simulateFailureButton);
         algorithmPanel.add(restoreConnectionButton);
+        algorithmPanel.add(routeTreeButton);
         algorithmPanel.add(packetSimulationButton);
         
         // Panel de utilidades
@@ -214,6 +218,13 @@ public class ControlPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 restoreConnection();
+            }
+        });
+        
+        routeTreeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                showRouteTree();
             }
         });
         
@@ -460,6 +471,18 @@ public class ControlPanel extends JPanel {
                 mainWindow.showError("No se pudo restaurar la conexión");
             }
         }
+    }
+    
+    private void showRouteTree() {
+        Network network = mainWindow.getNetwork();
+        if (network.getActiveNodes().size() < 2) {
+            mainWindow.showError("Se necesitan al menos 2 nodos activos para mostrar el árbol de rutas");
+            return;
+        }
+        
+        // Crear y mostrar la ventana del árbol de rutas
+        RouteTreeWindow routeTreeWindow = new RouteTreeWindow(mainWindow);
+        routeTreeWindow.setVisible(true);
     }
     
     private void clearNetwork() {
